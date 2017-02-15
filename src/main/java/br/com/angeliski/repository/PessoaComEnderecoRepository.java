@@ -8,6 +8,6 @@ import br.com.angeliski.modelos.PessoaComEndereco;
 
 public interface PessoaComEnderecoRepository extends CrudRepository<PessoaComEndereco, Long> {
 
-    List<PessoaComEndereco> findAllByPessoaId(Long pessoaId
-    );
+    List<PessoaComEndereco> findAllByPessoaId(Long pessoaId);
+
 }

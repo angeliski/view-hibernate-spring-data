@@ -9,6 +9,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 import br.com.angeliski.modelos.PessoaComEndereco;
+import br.com.angeliski.modelos.PessoaComEnderecoIdEmbeddable;
+import br.com.angeliski.repository.PessoaComEnderecoIdEmbeddableRepository;
 import br.com.angeliski.repository.PessoaComEnderecoRepository;
 
 import static org.junit.Assert.assertEquals;
@@ -19,11 +21,19 @@ public class ViewHibernateSpringDataApplicationTests {
 
     @Autowired
     private PessoaComEnderecoRepository pessoaComEnderecoRepository;
+    @Autowired
+    private PessoaComEnderecoIdEmbeddableRepository pessoaComEnderecoIdEmbeddableRepository;
 
     @Test
-    public void contextLoads() {
+    public void carregarEnderecosEsperandoDuplicidade() {
         List<PessoaComEndereco> enderecos = pessoaComEnderecoRepository.findAllByPessoaId(1L);
         assertEquals(2, enderecos.size());
     }
 
+
+    @Test
+    public void carregarEnderecosSemDuplicidadeParaQuandoIdEstiverEmDuasColunas() throws Exception {
+        List<PessoaComEnderecoIdEmbeddable> enderecos = pessoaComEnderecoIdEmbeddableRepository.findAllByPessoaEnderecoIdPessoaId(1L);
+        assertEquals(2, enderecos.size());
+    }
 }
