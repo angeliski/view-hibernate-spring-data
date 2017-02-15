@@ -1,5 +1,6 @@
 CREATE OR REPLACE VIEW pessoa_com_endereco AS
   SELECT
+    UUID() AS ID,
     p.id                                                   pessoa_id,
     e.id                                                   endereco_id,
     p.nome,
